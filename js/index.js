@@ -1,6 +1,7 @@
 // Variables
 var currentDay = $("#currentDay");
 
+
 //Function to find the suffix of the day
 const nthNumber = (number) => {
     if (number > 3 && number < 21) return "th";
@@ -17,6 +18,7 @@ const nthNumber = (number) => {
   };
 
 // DayJs for the current day
-var now = dayjs().format("dddd, MMMM D - YYYY");
-currentDay.text(now);
+var daySuffix = nthNumber(dayjs().format("D"));
+var now = dayjs().format("dddd, MMMM D");
+currentDay.text(now+daySuffix);
 
