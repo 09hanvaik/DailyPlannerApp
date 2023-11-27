@@ -67,3 +67,30 @@ function colouredTimeblocks() {
         }
     });
 }
+
+$(document).ready(function () {
+    colouredTimeblocks();
+    setInterval(colouredTimeblocks, 10000);
+});
+
+
+// Save function
+$(document).on('click', '.saveBtn', function (event) {
+    event.preventDefault();
+    var SaveBtnValue = $(this).val();
+    var description = document.getElementById(SaveBtnValue).value;
+    localStorage.setItem(SaveBtnValue, description);
+});
+
+// Get stored notes
+function storedNotes() {
+    for (var i = 0; i < timeSlots.length; i++) {
+        var getStoredNotes = localStorage.getItem(i);
+        var text = document.getElementById(i);
+        // if (getStoredNotes !== null) {
+        //     text.append(getStoredNotes);
+        // }
+    }
+}
+
+storedNotes();
