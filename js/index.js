@@ -25,7 +25,7 @@ currentDay.text(now+daySuffix);
 
 // Time Slots
 var timeSlots = [
-    "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"
+    "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"
 ];
 
 function createTimeblock() {
@@ -57,15 +57,36 @@ $(document).on('click', '.saveBtn', function (event) {
     localStorage.setItem(SaveBtnValue, description);
 });
 
-// Get stored notes
-function storedNotes() {
+// Get slot notes
+function slotNotes() {
     for (var i = 0; i < timeSlots.length; i++) {
-        var getStoredNotes = localStorage.getItem(i);
+        var getSlotNotes = localStorage.getItem(i);
         var text = document.getElementById(i);
-        if (getStoredNotes !== null) {
-            text.append(getStoredNotes);
+        if (getSlotNotes !== null) {
+            text.append(getSlotNotes);
         }
     }
 }
+slotNotes();
 
-storedNotes();
+// Colour time slots
+function colourTimeSlots() {
+    var descriptions = $('.description');
+    
+    //Compare the current time to current slot time (in the loop for each slot), and colour using classes.
+    descriptions.each(function (i) {
+        var currentHour = parseInt(dayjs().format('H'));
+        var currentTimeSlot = parseInt(timeSlots[i].slice(0,-3));
+
+        if (currentHour == currentTimeSlot) {
+            $(this).addClass('present').removeClass('future past');
+        } else if (currentHour < currentTimeSlot) {
+            $(this).addClass('future').removeClass('past present');
+        } else if (currentHour > currentTimeSlot) {
+            $(this).addClass('past').removeClass('future present');
+        }
+    });
+}
+
+
+colourTimeSlots();

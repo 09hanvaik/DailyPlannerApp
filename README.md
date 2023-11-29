@@ -23,3 +23,4 @@ Persist events between refreshes of a page.
 
 ## Resources
 https://www.freecodecamp.org/news/format-dates-with-ordinal-number-suffixes-javascript/#:~:text=In%20this%20short%20article%2C%20you,%E2%80%9D%20(like%20for%204th).
+https://www.w3schools.com/jsref/jsref_slice_string.asp
