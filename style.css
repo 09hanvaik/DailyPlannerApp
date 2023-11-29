@@ -71,6 +71,11 @@ header {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  background-image: url(floppy-disk-solid.svg);   
+  background-repeat: no-repeat; 
+  border: none; 
+  background-position: center;
+  background-size: 30px 30px;
 }
 
 .saveBtn i:hover {

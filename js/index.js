@@ -43,36 +43,11 @@ function createTimeblock() {
         row.append(text);
 
         var save = $("<button>").addClass("saveBtn block").attr("value", i);
-        save.text("Save");
         row.append(save);
     }
 }
 
 createTimeblock();
-
-// Coloured time slots
-function colouredTimeblocks() {
-    var GetCurrentHR = dayjs().format('h a');
-    var CurrentHour = dayjs(GetCurrentHR, 'h a');
-    var Descriptions = $('.description'); // Using jQuery to select elements
-    
-    Descriptions.each(function (i) {
-        var TimeBlock = dayjs(timeSlots[i], 'h a');
-        if (CurrentHour.isSame(TimeBlock)) {
-            $(this).addClass('present').removeClass('future past');
-        } else if (CurrentHour.isBefore(TimeBlock)) {
-            $(this).addClass('future').removeClass('past present');
-        } else if (CurrentHour.isBefore(TimeBlock) === false) {
-            $(this).addClass('past').removeClass('future present');
-        }
-    });
-}
-
-$(document).ready(function () {
-    colouredTimeblocks();
-    setInterval(colouredTimeblocks, 10000);
-});
-
 
 // Save function
 $(document).on('click', '.saveBtn', function (event) {
@@ -87,9 +62,9 @@ function storedNotes() {
     for (var i = 0; i < timeSlots.length; i++) {
         var getStoredNotes = localStorage.getItem(i);
         var text = document.getElementById(i);
-        // if (getStoredNotes !== null) {
-        //     text.append(getStoredNotes);
-        // }
+        if (getStoredNotes !== null) {
+            text.append(getStoredNotes);
+        }
     }
 }
 
