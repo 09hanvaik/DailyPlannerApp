@@ -88,5 +88,9 @@ function colourTimeSlots() {
     });
 }
 
+//If the page doesn't refresh, colour blocks according to new time, every minute.
+$(document).ready(function () {
+    colourTimeSlots();
+    setInterval(colourTimeSlots, 60000);
+});
 
-colourTimeSlots();
